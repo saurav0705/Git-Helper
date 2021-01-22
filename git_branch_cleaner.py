@@ -1,25 +1,21 @@
+from common import execute_command, converted_path
 import sys
 import os
 import subprocess
-import pprint
 path = sys.argv
-pp = pprint.PrettyPrinter(indent=4)
 
 BRANCHES_TO_BE_SPARED = ['master', 'production']
 
 
 def delete_these_branches(branches):
-    command = ''
     for branch in branches:
-        os.system('git branch -D ' + branch)
+        print("\033[91m {}\033[00m".format(
+            execute_command('git branch -D ' + branch)))
 
 
 def get_all_git_branches(path):
-    os.chdir(path)
-    cmd = ['git branch']
-    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = p.communicate(0)
-    output = output[0].decode('ascii')
+    os.chdir(converted_path(path))
+    output = execute_command('git branch')
     branches = output.replace('*', '')
     for branch in BRANCHES_TO_BE_SPARED:
         branches = branches.replace(" "+branch+"\n", '')
@@ -37,7 +33,7 @@ def get_all_git_branches(path):
             print("\033[93m {}\033[00m".format("DELETING...."))
             delete_these_branches(BRANCHES_TO_BE_DELETED)
         else:
-            print("CANCELLED THE OPERATION")
+            print("\033[91m {}\033[00m" .format("CANCELLED THE OPERATION"))
 
 
 if len(path) == 1:
