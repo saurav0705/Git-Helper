@@ -1,4 +1,4 @@
-from common import execute_command, converted_path
+from common import execute_command, converted_path, print_in_color
 import sys
 import os
 import subprocess
@@ -9,8 +9,8 @@ BRANCHES_TO_BE_SPARED = ['master', 'production']
 
 def delete_these_branches(branches):
     for branch in branches:
-        print("\033[91m {}\033[00m".format(
-            execute_command('git branch -D ' + branch)))
+        print_in_color(
+            execute_command('git branch -D ' + branch), 'red')
 
 
 def get_all_git_branches(path):
@@ -22,18 +22,19 @@ def get_all_git_branches(path):
     BRANCHES_TO_BE_DELETED = list(filter(lambda item: len(item) != 0, map(
         lambda item: item.strip(), branches.split('\n'))))
     if(len(BRANCHES_TO_BE_DELETED) == 0):
-        print("No branch To Delete")
-        print("\033[92m {}\033[00m \033[93m {}\033[00m" .format(
-            "PROTECTED BRANCHES :: ", BRANCHES_TO_BE_SPARED))
+        print_in_color("No branch To Delete", 'green')
+        print_in_color("PROTECTED BRANCHES :: ", 'green', '')
+        print_in_color(BRANCHES_TO_BE_SPARED, 'orange')
     else:
-        print("\033[92m {}\033[00m \033[91m {}\033[00m" .format(
-            "Are You Sure You Want To delete These Branches ? ::  ", BRANCHES_TO_BE_DELETED))
-        answer = input("Enter Yes To Delete :: ")
-        if(answer.upper() == 'YES'):
-            print("\033[93m {}\033[00m".format("DELETING...."))
+        print_in_color(
+            "Are You Sure You Want To delete These Branches ? ::  ", 'orange', '')
+        print_in_color(BRANCHES_TO_BE_DELETED, 'red')
+        answer = input("Enter Y To Delete :: ")
+        if(answer.upper() == 'Y'):
+            print_in_color("DELETING....", 'green')
             delete_these_branches(BRANCHES_TO_BE_DELETED)
         else:
-            print("\033[91m {}\033[00m" .format("CANCELLED THE OPERATION"))
+            print_in_color("CANCELLED THE OPERATION", 'red')
 
 
 if len(path) == 1:
