@@ -2,8 +2,6 @@ import subprocess
 from os.path import expanduser
 import os
 
-import pdb
-
 
 def execute_command(command):
     p = subprocess.Popen([command], shell=True,
@@ -63,7 +61,3 @@ def stash_changes_and_perform_action(path, action=None):
         branch = execute_command('git branch --show-current')
         action()
         execute_command('git checkout '+branch)
-
-
-# os.chdir(os.getcwd())
-# print(execute_command('git checkout alsjnc'))

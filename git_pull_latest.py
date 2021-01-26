@@ -7,7 +7,6 @@
 import os
 from os.path import expanduser
 from common import execute_command, converted_path, print_in_color, stash_changes_and_perform_action
-import pdb
 
 PATH = None
 
