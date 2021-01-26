@@ -7,7 +7,7 @@ Git Helper is a python shell that provides some extra capabilities to your Githu
 Currently, I don't have an executable but you can clone my repo.
 
 ```bash
-git clone repo-name
+git clone https://github.com/saurav0705/Git-Helper.git
 ```
 
 set up the alias to trigger the script so that it can be triggered from anywhere. 
