@@ -2,7 +2,7 @@ from common import execute_command, converted_path, print_in_color
 import sys
 import os
 import subprocess
-path = sys.argv
+
 
 BRANCHES_TO_BE_SPARED = ['master', 'production']
 
@@ -29,15 +29,10 @@ def get_all_git_branches(path):
         print_in_color(
             "Are You Sure You Want To delete These Branches ? ::  ", 'orange', '')
         print_in_color(BRANCHES_TO_BE_DELETED, 'red')
-        answer = input("Enter Y To Delete :: ")
+        print_in_color("Enter Y To Delete :: ", 'green', '')
+        answer = input()
         if(answer.upper() == 'Y'):
             print_in_color("DELETING....", 'green')
             delete_these_branches(BRANCHES_TO_BE_DELETED)
         else:
             print_in_color("CANCELLED THE OPERATION", 'red')
-
-
-if len(path) == 1:
-    print("No path found")
-else:
-    get_all_git_branches(path[1])
