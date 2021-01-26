@@ -4,7 +4,7 @@ import os
 import subprocess
 
 
-BRANCHES_TO_BE_SPARED = ['master', 'production']
+BRANCHES_TO_BE_SPARED = []
 
 
 def delete_these_branches(branches):
@@ -13,10 +13,11 @@ def delete_these_branches(branches):
             execute_command('git branch -D ' + branch), 'red')
 
 
-def get_all_git_branches(path):
+def delete_feature_branches(path, protected_branches):
     os.chdir(converted_path(path))
     output = execute_command('git branch')
     branches = output.replace('*', '')
+    BRANCHES_TO_BE_SPARED = protected_branches
     for branch in BRANCHES_TO_BE_SPARED:
         branches = branches.replace(" "+branch+"\n", '')
     BRANCHES_TO_BE_DELETED = list(filter(lambda item: len(item) != 0, map(
