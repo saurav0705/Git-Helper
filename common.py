@@ -61,3 +61,5 @@ def stash_changes_and_perform_action(path, action=None):
         branch = execute_command('git branch --show-current')
         action()
         execute_command('git checkout '+branch)
+        print_in_color(
+            '## REVERTED TO ORIGINAL STATE ##', 'green')

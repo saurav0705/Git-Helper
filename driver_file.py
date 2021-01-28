@@ -6,6 +6,7 @@ from common import converted_path
 from git_pull_latest import stash_changes_and_pull_branches
 from git_branch_cleaner import delete_feature_branches
 import json
+import re
 
 
 class GitHelper(cmd.Cmd):
@@ -13,8 +14,9 @@ class GitHelper(cmd.Cmd):
     intro = 'Welcome to the Git Helper Shell. Type ? for help'
     prompt = '(Git Helper) $ '
     config = None
-    with open('./config.json') as f:
-        config = json.load(f)
+    config_path = re.sub(r"/[\w]*.py",  "/config.json", __file__)
+    with open(config_path) as data:
+        config = json.load(data)
 
     def check_path(self, path):
         return os.path.exists(converted_path(path))
@@ -37,6 +39,10 @@ class GitHelper(cmd.Cmd):
     def do_get_path(self, line):
         'Returns Path for the Taget Repo'
         print(self.path)
+        # print(__file__)
+
+    def do_config_path(self, line):
+        print(self.config_path)
 
     def do_pull_branch(self, line):
         'Pulls Latest of those branches in your current repo that you enter :  Example pull_branch'
