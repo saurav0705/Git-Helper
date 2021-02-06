@@ -39,7 +39,6 @@ class GitHelper(cmd.Cmd):
     def do_get_path(self, line):
         'Returns Path for the Taget Repo'
         print(self.path)
-        # print(__file__)
 
     def do_config_path(self, line):
         print(self.config_path)
