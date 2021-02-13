@@ -8,9 +8,16 @@ BRANCHES_TO_BE_SPARED = []
 
 
 def delete_these_branches(branches):
+    print_in_color("Started Deleting Operation", 'green')
     for branch in branches:
-        print_in_color(
-            execute_command('git branch -D ' + branch), 'red')
+        output = execute_command('git branch -D ' + branch)
+        if "error" in output:
+            print_in_color(
+                output, 'red', "")
+        else:
+            print_in_color(
+                output, 'orange', "")
+    print_in_color("Completed Deleting Operation", 'green')
 
 
 def delete_feature_branches(path, protected_branches):
@@ -33,7 +40,6 @@ def delete_feature_branches(path, protected_branches):
         print_in_color("Enter Y To Delete :: ", 'green', '')
         answer = input()
         if(answer.upper() == 'Y'):
-            print_in_color("DELETING....", 'green')
             delete_these_branches(BRANCHES_TO_BE_DELETED)
         else:
             print_in_color("CANCELLED THE OPERATION", 'red')

@@ -1,6 +1,7 @@
 {
     "PROTECTED_BRANCHES":[
         "master",
-        "production"
+        "production",
+        "main"
     ]
 }
