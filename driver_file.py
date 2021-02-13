@@ -41,6 +41,7 @@ class GitHelper(cmd.Cmd):
         print(self.path)
 
     def do_config_path(self, line):
+        'Prints Out the current config path'
         print(self.config_path)
 
     def do_pull_branch(self, line):
