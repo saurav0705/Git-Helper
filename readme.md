@@ -28,6 +28,7 @@ So what this method does is if you run this in your local GitHub repo it will fi
 ```
 (Git Helper) $ clean_repo
 ```
+![clean_repo](https://media.giphy.com/media/LZY2An8QxP2z3eAEMR/source.gif)
 
 ### pull_branch
 pulling a branch is also another trivial thing that this repo does suppose you are working on a branch and suddenly you have to switch to a new feature branch but before switching to this new feature branch you have to take the pull from the base branch so it this command makes it easy just run pull_branch and it will stash your changes and will ask you for the branch you want to update and will pull latest of the branch and will revert to your feature branch and will pop the stashed changes so that you have the same working environment.
@@ -38,6 +39,7 @@ pulling a branch is also another trivial thing that this repo does suppose you a
 (Git Helper) $ pull_branch
 ```
 
+![pull_branch](https://media.giphy.com/media/Gt5xu7JeiB6E5ZTjZ6/source.gif)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
